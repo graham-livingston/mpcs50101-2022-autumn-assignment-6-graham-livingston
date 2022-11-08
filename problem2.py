@@ -1,5 +1,4 @@
 from itertools import permutations
-# letter_list = ['a','a','h','b','c','d','e']
 
 def parse_user_Input(userInput):
     """Returns the parsed user Input and validates that 
