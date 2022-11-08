@@ -2,6 +2,8 @@ from itertools import permutations
 # letter_list = ['a','a','h','b','c','d','e']
 
 def parse_user_Input(userInput):
+    """Returns the parsed user Input and validates that 
+    the char are alphabetic"""
     userInput = userInput.replace(' ','')
     userInput = userInput.replace(',','')
     # need to validate that they are alphabetic
@@ -10,7 +12,7 @@ def parse_user_Input(userInput):
 
 def read_valid_word_file(fileName):
     # reads in file
-    """Return the parsed file"""
+    """Returns the list of valid words"""
     tempData = []
     try:
         with open(fileName, 'r') as txtFile:
@@ -26,6 +28,7 @@ def read_valid_word_file(fileName):
 
     
 def iterate_permutations(letter_list):
+    """Returns the posible permutations of the users 7 letters"""
     combos = []
     seven = list(permutations(letter_list,7))
     for tup in seven:
@@ -33,14 +36,14 @@ def iterate_permutations(letter_list):
     return combos
 
 def check_for_valid_words(permutation_list, valid_word_list):
-    # if the first letter of a valid word is in the submited string, iterate through the permutations of the submited words and see if the valid word is a substring in any of the permutations
+    """Returns all valid words that are possible from the permuations of user letters"""
+
     wordlist = []
     for word in valid_word_list:
         for perm in permutation_list:
             if word in perm and word not in wordlist:
                 wordlist.append(word)
     return(wordlist)
-    # return valid_word_list
 
 def points_for_letter(letter):
     """Return the points as an integer for a given letter according to Scrabble
@@ -59,6 +62,7 @@ def points_for_letter(letter):
 
 
 def get_scores_dictionary(wordlist):
+    """Returns a dictionary of words and their subsequent scores"""
     tempData = {}
     for word in wordlist:
         tempscore = []
@@ -77,6 +81,7 @@ def get_scores_dictionary(wordlist):
     return tempData
 
 def sort_dict_scores(data):
+    """Returns a dictionary of words sorted by their score values"""
     # sort dictionary by scores
     sorted_dict = sorted(data.items(), key=lambda x:x[1], reverse=True)
     newDict = dict(sorted_dict[:15]) 
